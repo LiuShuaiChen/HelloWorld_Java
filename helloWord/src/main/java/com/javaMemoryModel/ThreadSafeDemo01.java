@@ -8,14 +8,11 @@ public class ThreadSafeDemo01 {
     public static void main(String[] args) {
         ThreadDemo01 threadDemo01 = new ThreadDemo01();
 
-        Thread thread01 = new Thread(threadDemo01);
-        thread01.setName("T1");
+        Thread thread01 = new Thread(threadDemo01, "T1");
 
-        Thread thread02 = new Thread(threadDemo01);
-        thread02.setName("T2");
+        Thread thread02 = new Thread(threadDemo01, "T2");
 
-        Thread thread03 = new Thread(threadDemo01);
-        thread03.setName("T3");
+        Thread thread03 = new Thread(threadDemo01, "T3");
 
         thread01.start();
         thread02.start();
@@ -26,12 +23,18 @@ public class ThreadSafeDemo01 {
 
 
 class ThreadDemo01 implements Runnable {
-    private int count = 10000000;
+    private int count = 50;
 
     public synchronized void buyTicket() {
-        if (count > 0) {
-            System.out.println("火车票窗口==> " + Thread.currentThread().getName() + " 剩余" + count + " 张票");
-            --count;
+        if (count >= 0) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("火车票窗口==> " + Thread.currentThread().getName() + " 剩余 " + count + " 张票");
+            count = count - 1;
         }
     }
 
