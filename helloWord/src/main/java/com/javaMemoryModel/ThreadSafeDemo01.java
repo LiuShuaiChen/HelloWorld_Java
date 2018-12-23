@@ -5,6 +5,7 @@ package com.javaMemoryModel;
  * 2018-12-23 12:29:20
  */
 public class ThreadSafeDemo01 {
+
     public static void main(String[] args) {
         ThreadDemo01 threadDemo01 = new ThreadDemo01();
 
@@ -29,12 +30,11 @@ class ThreadDemo01 implements Runnable {
         if (count >= 0) {
             try {
                 Thread.sleep(50);
+                System.out.println("火车票窗口==> " + Thread.currentThread().getName() + " 剩余 " + count + " 张票");
+                count = count - 1;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            System.out.println("火车票窗口==> " + Thread.currentThread().getName() + " 剩余 " + count + " 张票");
-            count = count - 1;
         }
     }
 

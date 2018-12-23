@@ -21,6 +21,7 @@ public class ThreadSafeDemo02 {
 
 class ThreadTicket implements Runnable {
 
+    //静态常量 存在方法区
     private static int count = 100;
     private static Object obj = new Object();
 
