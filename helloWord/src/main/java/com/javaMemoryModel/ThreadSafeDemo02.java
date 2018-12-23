@@ -1,5 +1,10 @@
 package com.javaMemoryModel;
 
+/**
+ * 静态同步锁 static
+ * 显示锁 lock锁
+ * this锁 是指当前类的字节码文件
+ */
 public class ThreadSafeDemo02 {
 
     public static void main(String[] args) {
