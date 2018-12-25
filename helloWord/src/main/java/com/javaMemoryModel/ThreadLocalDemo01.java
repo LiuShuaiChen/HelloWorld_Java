@@ -20,7 +20,7 @@ public class ThreadLocalDemo01 extends Thread {
     @Override
     public void run() {
         for (int i = 0; i < 5; i++) {
-            System.out.println("线程 " + Thread.currentThread().getName() + "," + res.getCount());
+            System.out.println("线程 " + Thread.currentThread().getName() + "==>" + res.getCount());
         }
     }
 
@@ -34,6 +34,7 @@ public class ThreadLocalDemo01 extends Thread {
 //        ThreadLocalDemo01 demo01 = new ThreadLocalDemo01(res1);
 //        ThreadLocalDemo01 demo02 = new ThreadLocalDemo01(res2);
 //        ThreadLocalDemo01 demo03 = new ThreadLocalDemo01(res3);
+
         ThreadLocalDemo01 demo01 = new ThreadLocalDemo01(res);
         ThreadLocalDemo01 demo02 = new ThreadLocalDemo01(res);
         ThreadLocalDemo01 demo03 = new ThreadLocalDemo01(res);
