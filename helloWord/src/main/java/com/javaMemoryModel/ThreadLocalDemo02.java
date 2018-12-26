@@ -1,8 +1,14 @@
 package com.javaMemoryModel;
 
+import java.awt.image.VolatileImage;
+
+/**
+ * volatile关键字
+ */
 public class ThreadLocalDemo02 {
 
     public static void main(String[] args) {
+
         try {
             ThreadDemo02 threadDemo02 = new ThreadDemo02();
             threadDemo02.start();
@@ -10,8 +16,7 @@ public class ThreadLocalDemo02 {
             threadDemo02.setRunning(false);
             System.out.println("flag已经改成false");
             Thread.sleep(3000);
-            System.out.println(threadDemo02.flag);
-            Thread.sleep(3000);
+            System.out.println("flag==> " + threadDemo02.flag);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -21,32 +26,20 @@ public class ThreadLocalDemo02 {
 
 }
 
-
 class ThreadDemo02 extends Thread {
 
-    public boolean flag = true;
-
+    public volatile boolean flag = true;
     public void setRunning(boolean flag) {
         this.flag = flag;
     }
 
-    /**
-     * If this thread was constructed using a separate
-     * <code>Runnable</code> run object, then that
-     * <code>Runnable</code> object's <code>run</code> method is called;
-     * otherwise, this method does nothing and returns.
-     * <p>
-     * Subclasses of <code>Thread</code> should override this method.
-     *
-     * @see #start()
-     * @see #stop()
-     * @see #Thread(ThreadGroup, Runnable, String)
-     */
     @Override
     public void run() {
         System.out.println("线程开始..............");
+        int i= 0;
         while (flag) {
-
+            i = ++i;
+            System.out.println("i==>" + i);
         }
         System.out.println("线程结束..............");
     }
