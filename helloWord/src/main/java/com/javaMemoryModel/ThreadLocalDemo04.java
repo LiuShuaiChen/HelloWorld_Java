@@ -31,6 +31,16 @@ class InitThread extends Thread {
         int count = 0;
         while (true) {
             synchronized (res04) {
+
+                if (res04.isFlag()){
+                    try {
+                        // 线程进入等待
+                        res04.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 if (count == 0) {
                     res04.setName("小红");
                     res04.setSex("女");
@@ -40,6 +50,7 @@ class InitThread extends Thread {
                 }
             }
             count = (count + 1) % 2;
+            res04.setFlag(true);
         }
     }
 }
@@ -58,8 +69,19 @@ class OutThread extends Thread {
         while (true) {
             try {
                 synchronized (res04) {
+
+                    if (res04.isFlag()){
+                        res04.wait();
+                    }
+
                     Thread.sleep(50);
-                    System.out.println("res.name==>" + res04.getName() + ", res.sex==>" + res04.getSex());
+                    if (res04.getSex() != null && res04.getName() != null){
+                        System.out.println("res.name==>" + res04.getName() + ", res.sex==>" + res04.getSex());
+                    }
+                    // 标记当前线程为等待
+                    res04.setFlag(false);
+                    // 唤醒被等待的线程
+                    res04.notify();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -74,6 +96,16 @@ class Res04 {
     private String name;
     //性别
     private String sex;
+
+    private boolean flag;
+
+    public boolean isFlag() {
+        return flag = false;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
 
     public String getName() {
         return name;
