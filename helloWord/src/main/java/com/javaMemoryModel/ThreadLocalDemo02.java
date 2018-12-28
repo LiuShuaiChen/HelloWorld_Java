@@ -1,14 +1,12 @@
 package com.javaMemoryModel;
 
-import java.awt.image.VolatileImage;
-
 /**
  * volatile关键字
+ * 2018-12-27 14:45:07
  */
 public class ThreadLocalDemo02 {
 
     public static void main(String[] args) {
-
         try {
             ThreadDemo02 threadDemo02 = new ThreadDemo02();
             threadDemo02.start();
@@ -21,9 +19,7 @@ public class ThreadLocalDemo02 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
-
 }
 
 class ThreadDemo02 extends Thread {
