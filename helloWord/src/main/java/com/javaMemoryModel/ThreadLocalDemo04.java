@@ -5,7 +5,7 @@ package com.javaMemoryModel;
  * 2018-12-28 11:05:15
  * 多线程通讯
  */
-public class ThreadDemo04 {
+public class ThreadLocalDemo04 {
 
     public static void main(String[] args) {
         Res04 res04 = new Res04();
