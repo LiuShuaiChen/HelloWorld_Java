@@ -26,6 +26,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  *
  */
 public class ThreadPoolDemo01 {
+
+    //  阻塞队列最大好处 能够防止队列容器溢出 防止丢失数据
     public static void main(String[] args) {
 
         //并发包线程

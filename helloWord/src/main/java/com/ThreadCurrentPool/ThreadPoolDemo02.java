@@ -25,30 +25,44 @@ import java.util.concurrent.TimeUnit;
  * 阻塞队列最大好处 能够防止队列容器溢出 防止丢失数据
  */
 public class ThreadPoolDemo02 {
+
     public static void main(String[] args) {
 
-        //表示最多队列总数是3个
+        // 参数:表示最多队列总数是3个
         ArrayBlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<>(3);
+
+        // 最多支持3队列总数 阻塞式队列
+
         try {
+            // 添加非阻塞式队列
             arrayBlockingQueue.offer("AA");
+            // 添加阻塞式队列
             arrayBlockingQueue.offer("BB", 3, TimeUnit.SECONDS);
             arrayBlockingQueue.offer("CC");
+
+            // 添加阻塞式队列  超过队列最大总数3  这个队列数据不能放进队列  数据会被丢失
             arrayBlockingQueue.offer("DD", 3, TimeUnit.SECONDS);
+
+            System.out.println(arrayBlockingQueue.poll());
+            System.out.println(arrayBlockingQueue.poll());
+            System.out.println(arrayBlockingQueue.poll());
+            System.out.println(arrayBlockingQueue.poll(4, TimeUnit.SECONDS));
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+
         System.out.println(arrayBlockingQueue.size());
 
+        //队列个数是个变量 会随着的数量会被减少
 //        int count = arrayBlockingQueue.size();
-        for (int i = 0; i < 4; i++) {
+//        for (int i = 0; i < 4; i++) {
+//            System.out.println(arrayBlockingQueue.poll());
+//        }
 
-            System.out.println(arrayBlockingQueue.poll());
-        }
-
-        arrayBlockingQueue.offer("DD");
+        arrayBlockingQueue.offer("FF");
         System.out.println(arrayBlockingQueue.poll());
-
 
     }
 }
