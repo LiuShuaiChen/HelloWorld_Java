@@ -55,7 +55,7 @@ class ProducerThread implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println("生产者已经结束......");
+        System.out.println("###生产者线程已经停止###");
     }
 
     public void stop() {
@@ -97,6 +97,7 @@ class ConsumerThread implements Runnable {
                 e.printStackTrace();
             }
         }
+        System.out.println("###消费者线程已经停止###");
     }
 
     public void stop() {
@@ -115,25 +116,33 @@ public class ThreadPoolDemo03{
     public static void main(String[] args) {
 
         // ArrayBlockingQueue 是 BlockingQueue 接口的有界队列实现类，底层采用数组来实现。
-        ArrayBlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<String>(3);
+        BlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<String>(3);
         // 底层基于单向链表实现的阻塞队列，可以当做无界队列也可以当做有界队列来使用
-        LinkedBlockingQueue<String> linkedBlockingQueue = new LinkedBlockingQueue<>();
+        BlockingQueue<String> linkedBlockingQueue = new LinkedBlockingQueue<String>();
         // 同步的队列
-        SynchronousQueue<String> synchronousQueue = new SynchronousQueue<>();
+        BlockingQueue<String> synchronousQueue = new SynchronousQueue<String>();
 
         // 带排序的 BlockingQueue 实现，其并发控制采用的是 ReentrantLock，队列为无界队列（ArrayBlockingQueue 是有界队列，
         // LinkedBlockingQueue 也可以通过在构造函数中传入 capacity 指定队列最大的容量，
         // 但是 PriorityBlockingQueue 只能指定初始的队列大小，后面插入元素的时候，如果空间不够的话会自动扩容）。
-        PriorityBlockingQueue<String> priorityBlockingQueue = new PriorityBlockingQueue<>();
+        PriorityBlockingQueue<String> priorityBlockingQueue = new PriorityBlockingQueue<String>();
 
-        ProducerThread producerThread = new ProducerThread(arrayBlockingQueue);
+        ProducerThread producerThread = new ProducerThread(linkedBlockingQueue);
         Thread threadProducer = new Thread(producerThread);
         threadProducer.start();
 
-        ConsumerThread consumerThread = new ConsumerThread(arrayBlockingQueue);
+        ConsumerThread consumerThread = new ConsumerThread(linkedBlockingQueue);
         Thread threadconsumer = new Thread(consumerThread);
         threadconsumer.start();
 
+
+        try {
+            Thread.sleep(1000);
+            producerThread.stop();
+            consumerThread.stop();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
 //        AtomicInteger atomicInteger = new AtomicInteger();
