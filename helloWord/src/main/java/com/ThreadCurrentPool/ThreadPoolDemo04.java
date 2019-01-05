@@ -56,17 +56,34 @@ public class ThreadPoolDemo04 {
 
     public static void main(String[] args) {
 
+        // 线程池的含义 核心数 最大线程数 存活时间
+        // corePoolSize 核心线程数 表示最大可运行的线程数  核心线程数只能 <= maximumPoolSize最大可创建的线程数
+        // maximumPoolSize 表示可以最多创建线程数
         ThreadPoolExecutor threadPoolExecutor
-                = new ThreadPoolExecutor(1, 2, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(3));
+                = new ThreadPoolExecutor(1, 4, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(6));
 
-        // 任务1 在创建线程 在执行
-        threadPoolExecutor.execute(new TaskThread("task1"));
-        // 任务2 存放在队列缓存
-        threadPoolExecutor.execute(new TaskThread("task2"));
-        // 任务3 存放在队列缓存
-        threadPoolExecutor.execute(new TaskThread("task3"));
-        threadPoolExecutor.execute(new TaskThread("task4"));
-        threadPoolExecutor.execute(new TaskThread("task5"));
+        try {
+            // 任务1 在创建线程 在执行
+            threadPoolExecutor.execute(new TaskThread("task1"));
+            // 任务2 存放在队列缓存
+            threadPoolExecutor.execute(new TaskThread("task2"));
+            // 任务3 存放在队列缓存
+            threadPoolExecutor.execute(new TaskThread("task3"));
+            threadPoolExecutor.execute(new TaskThread("task4"));
+            threadPoolExecutor.execute(new TaskThread("task5"));
+            threadPoolExecutor.execute(new TaskThread("task6"));
+            threadPoolExecutor.execute(new TaskThread("task7"));
+            threadPoolExecutor.execute(new TaskThread("task8"));
+            threadPoolExecutor.execute(new TaskThread("task9"));
+            threadPoolExecutor.execute(new TaskThread("task10"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println(" maximumPoolSize + capacity ");
+            System.out.println(" threadPoolExecutor.getPoolSize() ==> " + threadPoolExecutor.getPoolSize());
+            //关闭线程池
+            threadPoolExecutor.shutdown();
+        }
 
         /**
          * 创建线程任务6就会报错
@@ -78,8 +95,7 @@ public class ThreadPoolDemo04 {
          * 	threadPoolExecutor.execute(new TaskThread("task6"));
          */
 
-        //关闭线程池
-        threadPoolExecutor.shutdown();
+
     }
 
 }
