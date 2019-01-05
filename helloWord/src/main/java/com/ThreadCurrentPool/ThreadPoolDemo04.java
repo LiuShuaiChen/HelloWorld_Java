@@ -1,6 +1,8 @@
 package com.ThreadCurrentPool;
 
-import java.util.concurrent.*;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 线程池的作用
@@ -24,13 +26,12 @@ import java.util.concurrent.*;
  * 如果当前线程池中的线程数目>=corePoolSize,则每来一个任务,会尝试将其添加到任务缓存队列当中,
  * 若添加成功,则该任务会等待空闲线程将其取出去执行;若添加失败(一般来说是任务缓存队列已经满了),
  * 则会尝试创建新的线程去执行这个任务;
- *
+ * <p>
  * 如果队列满了,则在总线程数不大于maximumPoolSize的前提下,则会创建新的线程
  * 如果当前线程池中的线程书库达到maximumPoolSize,则会采取任务拒绝策略进行处理
- *
+ * <p>
  * 如果线程池中的线程数量大于corePoolSize时,如果某线程空闲时间超过keepAliveTime,线程将被终止,
  * 直到线程池中的线程数目不大于corePoolSize;如果允许为核心池中的线程设置存活时间,那么核心池中的线程空闲时间超过keepAliveTime,线程也会被终止
- *
  */
 
 class TaskThread implements Runnable {
@@ -46,7 +47,7 @@ class TaskThread implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("threadName==>" + threadName + " " + Thread.currentThread().getName());
+        System.out.println("threadName==>" + threadName + ",线程是==>" + Thread.currentThread().getName());
     }
 }
 
@@ -55,7 +56,8 @@ public class ThreadPoolDemo04 {
 
     public static void main(String[] args) {
 
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 2, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(3));
+        ThreadPoolExecutor threadPoolExecutor
+                = new ThreadPoolExecutor(1, 2, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(3));
 
         // 任务1 在创建线程 在执行
         threadPoolExecutor.execute(new TaskThread("task1"));
@@ -66,6 +68,15 @@ public class ThreadPoolDemo04 {
         threadPoolExecutor.execute(new TaskThread("task4"));
         threadPoolExecutor.execute(new TaskThread("task5"));
 
+        /**
+         * 创建线程任务6就会报错
+         * Exception in thread "main" java.util.concurrent.RejectedExecutionException: Task com.ThreadCurrentPool.TaskThread@4f023edb rejected from java.util.concurrent.ThreadPoolExecutor@3a71f4dd[Running, pool size = 2, active threads = 2, queued tasks = 3, completed tasks = 0]
+         * 	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2063)
+         * 	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:830)
+         * 	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1379)
+         * 	at com.ThreadCurrentPool.ThreadPoolDemo04.main(ThreadPoolDemo04.java:72)
+         * 	threadPoolExecutor.execute(new TaskThread("task6"));
+         */
 
         //关闭线程池
         threadPoolExecutor.shutdown();
