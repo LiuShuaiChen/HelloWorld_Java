@@ -22,11 +22,11 @@ public class Main {
     public static void main(String[] args) {
 
         FutureClient futureClient = new FutureClient();
-        DataDemo request = futureClient.request("helloworld......");
+        DataDemo helloworld = futureClient.request("helloworld");
         System.out.println("请求发送成功!!!");
         System.out.println("执行其他任务...");
-        String requestStr = request.getRequest();
-        System.out.println("获取到结果..." + requestStr);
+        String requestStrhelloworld = helloworld.getRequest();
+        System.out.println("获取到结果..." + requestStrhelloworld);
 
     }
 

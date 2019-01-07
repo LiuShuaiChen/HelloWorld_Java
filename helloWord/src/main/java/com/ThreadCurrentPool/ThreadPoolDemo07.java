@@ -1,57 +1,21 @@
 package com.ThreadCurrentPool;
 
+import com.ThreadCurrentPool.futureDemo.DataDemo;
+import com.ThreadCurrentPool.futureDemo.FutureClient;
+
 /**
  * Future模式
  */
 
-interface DataDemo007 {
-
-    public abstract String getRuques();
-}
-
-class RealDataDemo007 implements DataDemo007 {
-
-    @Override
-    public String getRuques() {
-        return null;
-    }
-}
-
 
 public class ThreadPoolDemo07 {
 
-    public RealDataDemo007 realDataDemo007;
-
-    public volatile static boolean isFlag = false;
-
-
-    public synchronized String getRealDataDemo007() {
-
-        while (!isFlag) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        //获取到数据 直接返回
-        return realDataDemo007.getRuques();
-
-    }
-
-    public synchronized void setRealDataDemo007(RealDataDemo007 realDataDemo007) {
-
-        // 如果直接获取到数据 直接返回
-        if (isFlag) {
-            return;
-        }
-
-        //如果没有获取到数据 传递真实对象
-        this.realDataDemo007 = realDataDemo007;
-        isFlag = true;
-
-        //进行通知
-        notify();
+    public static void main(String[] args) {
+        FutureClient futureClient = new FutureClient();
+        DataDemo helloworld = futureClient.request("helloworld");
+        System.out.println("请求发送成功!!!");
+        System.out.println("执行其他任务...");
+        String requestStrhelloworld = helloworld.getRequest();
+        System.out.println("获取到结果..." + requestStrhelloworld);
     }
 }

@@ -19,9 +19,9 @@ public class RealDataDemo {
         System.out.println("......start " + result);
         AtomicInteger atomicInteger = new AtomicInteger();
         try {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 3; i++) {
                 Thread.sleep(1000);
-                System.out.println(atomicInteger.incrementAndGet());
+                System.out.print(atomicInteger.incrementAndGet());
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

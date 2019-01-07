@@ -1,7 +1,5 @@
 package com.ThreadCurrentPool.futureDemo;
 
-import javax.swing.plaf.synth.SynthViewportUI;
-
 public class FutureDataDemo implements DataDemo {
 
     private RealDataDemo realDataDemo;
