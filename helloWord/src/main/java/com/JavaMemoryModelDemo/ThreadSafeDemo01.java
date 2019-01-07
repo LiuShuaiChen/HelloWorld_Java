@@ -1,4 +1,4 @@
-package com.javaMemoryModel;
+package com.JavaMemoryModelDemo;
 
 /**
  * 线程安全 守护线程

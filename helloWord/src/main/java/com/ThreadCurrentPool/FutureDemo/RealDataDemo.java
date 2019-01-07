@@ -1,4 +1,4 @@
-package com.ThreadCurrentPool.futureDemo;
+package com.ThreadCurrentPool.FutureDemo;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

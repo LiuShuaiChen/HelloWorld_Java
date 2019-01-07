@@ -1,4 +1,4 @@
-package com.javaMemoryModel;
+package com.JavaMemoryModelDemo;
 
 public class HelloWorld {
     public static void main(String[] args) {

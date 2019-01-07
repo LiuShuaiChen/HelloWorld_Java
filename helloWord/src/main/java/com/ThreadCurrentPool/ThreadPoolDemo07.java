@@ -1,7 +1,7 @@
 package com.ThreadCurrentPool;
 
-import com.ThreadCurrentPool.futureDemo.DataDemo;
-import com.ThreadCurrentPool.futureDemo.FutureClient;
+import com.ThreadCurrentPool.FutureDemo.DataDemo;
+import com.ThreadCurrentPool.FutureDemo.FutureClient;
 
 /**
  * Future模式

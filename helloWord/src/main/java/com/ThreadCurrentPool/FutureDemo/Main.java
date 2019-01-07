@@ -1,6 +1,4 @@
-package com.ThreadCurrentPool.futureDemo;
-
-import javax.sound.midi.Soundbank;
+package com.ThreadCurrentPool.FutureDemo;
 
 /**
  * 需求:使用多线程技术,实现多线程下载,每个线程都会发一个http请求资源,进行下载操作

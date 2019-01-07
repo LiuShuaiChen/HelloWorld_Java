@@ -1,4 +1,4 @@
-package com.javaMemoryModel;
+package com.JavaMemoryModelDemo;
 
 /**
  * 静态同步锁 static

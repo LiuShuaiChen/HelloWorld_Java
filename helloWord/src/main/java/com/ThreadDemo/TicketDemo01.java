@@ -1,4 +1,4 @@
-package com.Demo01Thread;
+package com.ThreadDemo;
 
 /**
  * 多线程Demo

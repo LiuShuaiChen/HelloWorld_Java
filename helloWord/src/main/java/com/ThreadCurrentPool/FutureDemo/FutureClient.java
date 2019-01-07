@@ -1,4 +1,4 @@
-package com.ThreadCurrentPool.futureDemo;
+package com.ThreadCurrentPool.FutureDemo;
 
 /**
  * Future客户端

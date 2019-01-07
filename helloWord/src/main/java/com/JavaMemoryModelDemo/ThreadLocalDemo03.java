@@ -1,4 +1,4 @@
-package com.javaMemoryModel;
+package com.JavaMemoryModelDemo;
 
 /**
  * 睡眠排序
