@@ -40,6 +40,12 @@ import java.util.concurrent.TimeUnit;
  * 如果队列已经满了，则在总线程数不大于maximumPoolSize的前提下，则创建新的线程
  * 如果当前线程池中的线程数目达到maximumPoolSize，则会采取任务拒绝策略进行处理；
  * 如果线程池中的线程数量大于 corePoolSize时，如果某线程空闲时间超过keepAliveTime，线程将被终止，直至线程池中的线程数目不大于corePoolSize；如果允许为核心池中的线程设置存活时间，那么核心池中的线程空闲时间超过keepAliveTime，线程也会被终止。
+ *
+ * newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
+ * newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。
+ * newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。
+ * newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
+ *
  */
 
 class TaskThread implements Runnable {
