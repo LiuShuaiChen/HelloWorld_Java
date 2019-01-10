@@ -22,6 +22,12 @@ import java.util.concurrent.locks.ReentrantLock;
  * <p>
  * 轻量级锁(Lock锁) 与 重量级锁(Synchronized锁) 可重入性(递归锁)
  * 演示 lock锁 是否具备 可重入性 特征,锁可以传递(方法递归传递)
+ *
+ * 关于重入锁的介绍
+ * 锁作为并发共享数据，保证一致性的工具，在JAVA平台有多种实现(如 synchronized（重量级） 和 ReentrantLock(轻量级)等等 ) 。这些已经写好提供的锁为我们开发提供了便利。
+ * 重入锁，也叫做递归锁，指的是同一线程 外层函数获得锁之后 ，内层递归函数仍然有获取该锁的代码，但不受影响。
+ *
+ *
  */
 public class LockDemo01 implements Runnable {
 
