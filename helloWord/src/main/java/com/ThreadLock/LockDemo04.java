@@ -1,5 +1,7 @@
 package com.ThreadLock;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 /**
  * 乐观锁
  *
@@ -17,11 +19,16 @@ package com.ThreadLock;
  * 如果查不到就会不断重试
  *
  */
-public class LockDemo04 {
+public class LockDemo04 implements Runnable{
 
     public static void main(String[] args) {
 
-        System.out.println("HelloWorld");
+        new Thread(new LockDemo04()).start();
 
+    }
+
+    @Override
+    public void run() {
+        System.out.println("HelloWorld!!");
     }
 }
