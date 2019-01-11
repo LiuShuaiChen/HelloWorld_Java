@@ -14,18 +14,34 @@ public class RedisConnectionTest {
     @Before
     public void before() {
 
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        //设置redis连接池最大连接数量
-        jedisPoolConfig.setMaxTotal(50);
-        //设置redis连接池最大空闲数量
-        jedisPoolConfig.setMaxIdle(10);
-        //设置redis连接最小空闲数量
-        jedisPoolConfig.setMinIdle(1);
+//        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+//        //设置redis连接池最大连接数量
+//        jedisPoolConfig.setMaxTotal(50);
+//        //设置redis连接池最大空闲数量
+//        jedisPoolConfig.setMaxIdle(10);
+//        //设置redis连接最小空闲数量
+//        jedisPoolConfig.setMinIdle(1);
+//
+//        RedisConnection redisConnection = new RedisConnection();
+//        redisConnection.setIp("188.131.161.54");
+//        redisConnection.setPort(6379);
+////        redisConnection.setPwd("");
+//        redisConnection.setClientName(Thread.currentThread().getName());
+//        redisConnection.setTimeout(600);
+//        redisConnection.setJedisPoolConfig(jedisPoolConfig);
 
-        RedisConnection redisConnection = new RedisConnection();
+
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        //设置 redis 连接池最大连接数量
+        jedisPoolConfig.setMaxTotal(50);
+        //设置 redis 连接池最大空闲连接数量
+        jedisPoolConfig.setMaxIdle(10);
+        //设置 redis 连接池最小空闲连接数量
+        jedisPoolConfig.setMinIdle(1);
+        redisConnection = new RedisConnection();
         redisConnection.setIp("188.131.161.54");
         redisConnection.setPort(6379);
-//        redisConnection.setPwd("");
+        redisConnection.setPwd("test123");
         redisConnection.setClientName(Thread.currentThread().getName());
         redisConnection.setTimeout(600);
         redisConnection.setJedisPoolConfig(jedisPoolConfig);

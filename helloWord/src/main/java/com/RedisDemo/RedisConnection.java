@@ -64,6 +64,16 @@ public class RedisConnection {
         }
     }
 
+//    private void buildConnection() {
+//        if (jedisPool == null) {
+//            if (jedisPoolConfig == null) {
+//                jedisPool = new JedisPool(new JedisPoolConfig(), ip, port, timeout, pwd, 0, clientName);
+//            } else {
+//                jedisPool = new JedisPool(jedisPoolConfig, ip, port, timeout, pwd, 0, clientName);
+//            }
+//        }
+//    }
+
     public Jedis getJedis() {
         buildConnection();
         if (jedisPool != null) {
