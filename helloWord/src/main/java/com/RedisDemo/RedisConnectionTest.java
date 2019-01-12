@@ -41,7 +41,7 @@ public class RedisConnectionTest {
         redisConnection = new RedisConnection();
         redisConnection.setIp("188.131.161.54");
         redisConnection.setPort(6379);
-        redisConnection.setPwd("test123");
+//        redisConnection.setPwd("test123");
         redisConnection.setClientName(Thread.currentThread().getName());
         redisConnection.setTimeout(600);
         redisConnection.setJedisPoolConfig(jedisPoolConfig);
@@ -57,7 +57,8 @@ public class RedisConnectionTest {
         try {
             jedis.select(1);
             jedis.set("name","grade");
-            Assert.assertTrue("grade".equals("name"));
+            System.out.println(jedis.get("name"));
+            Assert.assertTrue("grade".equals(jedis.get("name")));
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
