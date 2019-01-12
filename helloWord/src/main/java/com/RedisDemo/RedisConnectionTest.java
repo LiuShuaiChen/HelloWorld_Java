@@ -5,31 +5,20 @@ import org.junit.Before;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.ScanResult;
+
+import java.util.Set;
+import java.util.UUID;
 
 public class RedisConnectionTest {
 
+    //测试性能
+    //redis-benchmark -h 127.0.0.1 -p 6379 -t set,lpush -n 10000 -q
 
     private RedisConnection redisConnection;
 
     @Before
     public void before() {
-
-//        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-//        //设置redis连接池最大连接数量
-//        jedisPoolConfig.setMaxTotal(50);
-//        //设置redis连接池最大空闲数量
-//        jedisPoolConfig.setMaxIdle(10);
-//        //设置redis连接最小空闲数量
-//        jedisPoolConfig.setMinIdle(1);
-//
-//        RedisConnection redisConnection = new RedisConnection();
-//        redisConnection.setIp("188.131.161.54");
-//        redisConnection.setPort(6379);
-////        redisConnection.setPwd("");
-//        redisConnection.setClientName(Thread.currentThread().getName());
-//        redisConnection.setTimeout(600);
-//        redisConnection.setJedisPoolConfig(jedisPoolConfig);
-
 
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         //设置 redis 连接池最大连接数量
@@ -39,7 +28,7 @@ public class RedisConnectionTest {
         //设置 redis 连接池最小空闲连接数量
         jedisPoolConfig.setMinIdle(1);
         redisConnection = new RedisConnection();
-        redisConnection.setIp("188.131.161.54");
+        redisConnection.setIp("192.168.126.200");
         redisConnection.setPort(6379);
 //        redisConnection.setPwd("test123");
         redisConnection.setClientName(Thread.currentThread().getName());
@@ -47,7 +36,6 @@ public class RedisConnectionTest {
         redisConnection.setJedisPoolConfig(jedisPoolConfig);
 
     }
-
 
     @Test
     public void testPutGet(){
@@ -57,8 +45,38 @@ public class RedisConnectionTest {
         try {
             jedis.select(1);
             jedis.set("name","grade");
-            System.out.println(jedis.get("name"));
+
+            for (int i = 0; i < 100; i++) {
+                jedis.set(i+"hello",i+"word.." + Math.random());
+            }
+
+            //断言语句
             Assert.assertTrue("grade".equals(jedis.get("name")));
+
+            //获取所有的keys
+            Set<String> keys = jedis.keys("*");
+            System.out.println(keys.size());
+
+            //再根据这些key获取所有的value
+//            for (String key : keys) {
+//                System.out.println(jedis.get(key));
+//            }
+
+            //删除库里的所有数据
+//            String s = jedis.flushDB();
+//            System.out.println(s);
+
+            ScanResult<String> scan = jedis.scan("0");
+            System.err.println(scan.getResult());
+
+
+            // 一个list集合
+            for (int i = 0; i < 10; i++) {
+                jedis.lpush("list_alice","" + UUID.randomUUID());
+
+            }
+            System.out.println(jedis.lpop("list_alice").length());
+
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
