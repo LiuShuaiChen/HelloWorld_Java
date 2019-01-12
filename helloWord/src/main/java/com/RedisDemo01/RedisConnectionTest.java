@@ -1,4 +1,4 @@
-package com.RedisDemo;
+package com.RedisDemo01;
 
 import org.junit.Assert;
 import org.junit.Before;
