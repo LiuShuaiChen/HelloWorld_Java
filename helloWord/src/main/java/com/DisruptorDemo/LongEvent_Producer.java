@@ -32,7 +32,7 @@ public class LongEvent_Producer {
             }
 
         }finally {
-            System.out.println("生产者准备发送数据");
+            System.out.println("生产者准备发送数据 " + sequence);
             //发布事件
             ringBuffer.publish(sequence);
         }
