@@ -59,7 +59,7 @@ public class DisruptorDemo01 {
         //2.创建工厂
         EventFactory<LongEvent_Bean> longEvent_factory = new LongEvent_Factory();
 
-        //3.创建ringbuffer大小
+        //3.创建ringbuffer大小 2的N次方
         int ringBufferSize = 1024 * 1024;
 
         //4.创建Disruptor
