@@ -2,6 +2,8 @@ package com.ThreadLock;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
 
+import java.util.concurrent.CountDownLatch;
+
 /**
  * 乐观锁
  *
@@ -23,6 +25,17 @@ public class LockDemo04 implements Runnable{
 
     public static void main(String[] args) {
 
+        CountDownLatch countDownLatch = new CountDownLatch(2);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("aaaaaaaaa");
+                countDownLatch.countDown();
+                System.out.println("bbbbbbbbb");
+            }
+        }).start();
+
         new Thread(new LockDemo04()).start();
 
     }
@@ -30,5 +43,6 @@ public class LockDemo04 implements Runnable{
     @Override
     public void run() {
         System.out.println("HelloWorld!!");
+
     }
 }

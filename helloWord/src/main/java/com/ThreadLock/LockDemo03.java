@@ -54,6 +54,7 @@ public class LockDemo03 {
  * 问题:如果变量V初次读取的时候是A,那么CAS操作就会误认为它从来没有修改过.
  * 针对这种情况,Java的并发包中提供了一个带有标识的原子引用类AtomicStampedReference,它可以通过控制变量值的版本来保证CAS的正确性.
  *
+ * 原子引用类AtomicStampedReference
  */
 class LockDemoEnity004 implements Runnable {
 

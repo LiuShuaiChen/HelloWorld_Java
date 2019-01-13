@@ -1,6 +1,8 @@
 package com.ThreadLock;
 
 import java.util.Date;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 关于CAS无锁机制原理
@@ -29,6 +31,8 @@ import java.util.Date;
  *
  * 6)在硬件层面:大部分的现代处理器已经支持原子化的CAS指令.在JDK5.0以后,虚拟机可以使用这个致命来实现并发操作和并发数据结构
  *
+ * CAS自旋锁
+ *
  *
  */
 public class LockDemo05  {
@@ -44,6 +48,10 @@ public class LockDemo05  {
         System.out.println(new Date().getTime());
 
         System.out.println(System.currentTimeMillis());
+
+
+        AtomicLong atomicLong = new AtomicLong();
+        CopyOnWriteArrayList<String> strings = new CopyOnWriteArrayList<>();
 
 
     }
