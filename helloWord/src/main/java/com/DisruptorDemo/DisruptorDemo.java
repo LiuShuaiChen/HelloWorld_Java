@@ -49,7 +49,7 @@ import java.util.concurrent.Executors;
  * Sequence 序列
  */
 
-public class DisruptorDemo01 {
+public class DisruptorDemo {
 
     public static void main(String[] args) {
 
