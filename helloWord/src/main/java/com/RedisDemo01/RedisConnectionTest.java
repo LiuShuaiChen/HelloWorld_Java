@@ -7,11 +7,11 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.ScanResult;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 public class RedisConnectionTest {
-
 
     private RedisConnection redisConnection;
 
@@ -36,56 +36,67 @@ public class RedisConnectionTest {
     }
 
     @Test
-    public void testPutGet(){
+    public void testPutGet() {
 
+        // 通过连接池 获取redis
         Jedis jedis = redisConnection.getJedis();
 
         try {
-            jedis.select(1);
-            jedis.set("name","grade");
+            //删除库里的所有数据
+            System.out.println(jedis.flushDB());
 
-            for (int i = 0; i < 50; i++) {
-                jedis.set(i+"hello",i+"word.." + Math.random());
+            //选择数据库
+//            jedis.select(5);
+            jedis.set("name", "grade");
+
+            for (int i = 0; i <= 300; i++) {
+                jedis.set(i + "hello", i + "word.." + UUID.randomUUID());
             }
 
-            jedis.set("fallback","helloworld");
+            // 一个list集合
+            for (int i = 0; i < 10; i++) {
+                jedis.lpush("list_alice", "" + UUID.randomUUID());
+            }
+
+            jedis.set("fallback", "helloworld");
 
             //断言语句
             Assert.assertTrue("grade".equals(jedis.get("name")));
 
             //获取所有的keys
             Set<String> keys = jedis.keys("*");
-            System.out.println(keys.size());
+            System.out.println("redis已经save keys.length==> " + keys.size());
 
             //再根据这些key获取所有的value
-//            for (String key : keys) {
-//                System.out.println(jedis.get(key));
-//            }
+            for (String key : keys) {
+                if (jedis.type(key).equalsIgnoreCase("string")) {
+                    System.out.println(jedis.get(key));
+                }
 
-            //删除库里的所有数据
-//            String s = jedis.flushDB();
-//            System.out.println(s);
+                if (jedis.type(key).equalsIgnoreCase("set")) {
+                    System.out.println(jedis.get(key));
+                }
 
-            ScanResult<String> scan = jedis.scan("0");
+                //获取list集合所有的value
+                if (jedis.type(key).equalsIgnoreCase("list")) {
+                    List<String> list_alice1 = jedis.lrange(key, 0, -1);
+                    for (String str : list_alice1) {
+                        System.out.println(str);
+                    }
+                }
+
+            }
+
+            ScanResult<String> scan = jedis.scan("1");
             System.err.println(scan.getResult());
 
-            // 一个list集合
-//            for (int i = 0; i < 10; i++) {
-//                jedis.lpush("list_alice","" + UUID.randomUUID());
-//            }
-
-            System.out.println(jedis.lpop("list_alice").length());
-
-            System.out.println(jedis.get("fallback"));
+//            System.out.println(jedis.lpop("list_alice").length());
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (jedis != null) {
                 jedis.close();
             }
         }
-
-
     }
-
 }

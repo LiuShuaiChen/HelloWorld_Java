@@ -67,10 +67,9 @@ public class DisruptorDemo {
                 executorService, ProducerType.SINGLE, new YieldingWaitStrategy());
 
         //5.连接消费者的方法
-        longEvent_beanDisruptor.handleEventsWith(new LongEventHandler1_Consumer());
-
         // *如果写两个消费者 则代表一个生产者数据将会被消费两次
-        longEvent_beanDisruptor.handleEventsWith(new LongEventHandler2_Consumer());
+        longEvent_beanDisruptor.handleEventsWith(new LongEventHandler1_Consumer());
+//        longEvent_beanDisruptor.handleEventsWith(new LongEventHandler2_Consumer());
 
 
         //6.启动
