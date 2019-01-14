@@ -53,7 +53,7 @@ public class DisruptorDemo01 {
 
     public static void main(String[] args) {
 
-        //1.创建一个可以缓存的线程池
+        //1.创建一个可以缓存的线程池 提供给consumer
         ExecutorService executorService = Executors.newCachedThreadPool();
 
         //2.创建工厂
@@ -67,7 +67,11 @@ public class DisruptorDemo01 {
                 executorService, ProducerType.SINGLE, new YieldingWaitStrategy());
 
         //5.连接消费者的方法
-        longEvent_beanDisruptor.handleEventsWith(new LongEventHandler_Consumer());
+        longEvent_beanDisruptor.handleEventsWith(new LongEventHandler1_Consumer());
+
+        // *如果写两个消费者 则代表一个生产者数据将会被消费两次
+        longEvent_beanDisruptor.handleEventsWith(new LongEventHandler2_Consumer());
+
 
         //6.启动
         longEvent_beanDisruptor.start();
@@ -78,7 +82,7 @@ public class DisruptorDemo01 {
         //8.创建生产者
         LongEvent_Producer longEvent_producer = new LongEvent_Producer(ringBuffer);
 
-        //9.指定缓冲器大小
+        //9.指定缓冲器大小 容量是8
         ByteBuffer allocate = ByteBuffer.allocate(8);
         for (int i = 0; i <= 100; i++) {
             allocate.putLong(0,i);
@@ -86,8 +90,8 @@ public class DisruptorDemo01 {
         }
 
         //10.关闭Disruptor和executorService
-        longEvent_beanDisruptor.shutdown();
         executorService.shutdown();
+        longEvent_beanDisruptor.shutdown();
 
 
         //环形数组
