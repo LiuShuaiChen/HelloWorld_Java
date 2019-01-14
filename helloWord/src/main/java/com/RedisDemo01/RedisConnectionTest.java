@@ -49,7 +49,7 @@ public class RedisConnectionTest {
 //            jedis.select(5);
             jedis.set("name", "grade");
 
-            for (int i = 0; i <= 300; i++) {
+            for (int i = 0; i <= 3000; i++) {
                 jedis.set(i + "hello", i + "word.." + UUID.randomUUID());
             }
 
@@ -59,6 +59,8 @@ public class RedisConnectionTest {
             }
 
             jedis.set("fallback", "helloworld");
+            //设置有效期10秒
+            jedis.expire("fallback",10);
 
             //断言语句
             Assert.assertTrue("grade".equals(jedis.get("name")));
@@ -89,6 +91,13 @@ public class RedisConnectionTest {
 
             ScanResult<String> scan = jedis.scan("1");
             System.err.println(scan.getResult());
+
+            //线程睡眠10秒后 获取已经过期的key
+            Thread.sleep(10000);
+            System.out.println(jedis.get("fallback"));
+
+            //or 可以使用这种方式  设置key的时候顺便设置过期时间
+            jedis.setex("fallback",10,"heloo");
 
 //            System.out.println(jedis.lpop("list_alice").length());
         } catch (Exception e) {
