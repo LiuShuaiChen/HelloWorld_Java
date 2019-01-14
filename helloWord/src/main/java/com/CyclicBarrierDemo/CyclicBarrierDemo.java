@@ -34,7 +34,7 @@ class CyclicBarrierEntity extends Thread {
         } catch (BrokenBarrierException e) {
             e.printStackTrace();
         }
-        System.out.println("所有线程执行完毕...");
+        System.out.println( Thread.currentThread().getName()+  " 线程执行完毕...");
 
     }
 }
