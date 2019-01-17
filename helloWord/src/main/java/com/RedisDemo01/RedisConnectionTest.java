@@ -11,6 +11,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * redis的应用场景分析
+ *  主要是用来做缓存
+ *      缓存主要有两个作用:
+ *          1.快速访问
+ *          2.减少IO频率
+ * 减少IO的频率就是等缓存积累一定的量(大小)之后写到磁盘中进行持久化
+ *
+ * 一般的设计就是客户端往数据库里更新或者写读数据,redis作为经常需要被读取的数据或者被修改数据的缓存,提高操作效率,
+ * 一般的操作应该是客户端要修改数据说话,先去缓存redis去找,找不到的话去数据库读取,替换不热的缓存,不热的缓存刷回数据,能找到的话直接修改,这不存在一致性的问题
+ * 如果要并发访问redis和SQL.这样要保持一致性问题的话,进行读操作的时候就不能进行写操作了,就是客户端更新redis,然后redis回写数据库,这是一个事务.
+ * 这个事务如果有一步不成功,那么整个事务就是失败的.
+ *
+ */
 public class RedisConnectionTest {
 
     private RedisConnection redisConnection;
