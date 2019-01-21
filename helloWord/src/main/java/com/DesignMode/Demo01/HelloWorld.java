@@ -75,7 +75,12 @@ public class HelloWorld {
             //获取当前类所有的方法
             Method[] declaredMethods = classUser.getDeclaredMethods();
             for (Method declaredMethod : declaredMethods) {
+                System.out.println("######################################1");
                 System.out.println(declaredMethod);
+                System.out.println(declaredMethod.getModifiers());
+                System.out.println(declaredMethod.getName());
+                System.out.println("######################################2");
+
             }
 
 
