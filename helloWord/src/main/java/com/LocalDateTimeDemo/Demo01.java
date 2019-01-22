@@ -18,8 +18,8 @@ public class Demo01 {
         System.out.println(localDateTime);
 
         String str = "2019-01-11";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.parse(str, formatter);
+        DateTimeFormatter formatterStr = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(str, formatterStr);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -33,6 +33,7 @@ public class Demo01 {
         dateTime.toInstant(ZoneOffset.of("+08:00")).toEpochMilli();
         dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         System.out.println(dateTime.format(formatter));
 
     }
