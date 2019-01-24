@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * LocalDateTime时间工具类
@@ -35,6 +36,8 @@ public class Demo01 {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         System.out.println(dateTime.format(formatter));
+
+        System.out.println(UUID.randomUUID());
 
     }
 }
