@@ -25,5 +25,9 @@ public class App {
     {
         System.out.println( "Hello World!" );
         getHelloWorld();
+
+        App app = new App();
+        System.out.println(app.getStr());
+
     }
 }
