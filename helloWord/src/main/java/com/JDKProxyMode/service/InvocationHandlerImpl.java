@@ -28,17 +28,4 @@ public class InvocationHandlerImpl implements InvocationHandler {
         return invoke;
     }
 
-    public static void main(String[] args) {
-
-        UserDaoImpl userDao = new UserDaoImpl();
-        InvocationHandlerImpl invocationHandler = new InvocationHandlerImpl(userDao);
-        ClassLoader classLoader = userDao.getClass().getClassLoader();
-        Class<?>[] interfaces = userDao.getClass().getInterfaces();
-
-        //调用动态代理实例
-        IUserDao iUserDao = (IUserDao) Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
-        iUserDao.addUser();
-
-
-    }
 }
