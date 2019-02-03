@@ -1,5 +1,7 @@
 package com.FactoryMode;
 
+import java.util.UUID;
+
 /**
  * 工厂设计模式
  *  实现了创建者和调用者分离,工厂模式分为简单工厂,工厂方法,抽象工厂模式
@@ -15,4 +17,8 @@ package com.FactoryMode;
  *
  */
 public class HelloWorld {
+
+    public static void main(String[] args) {
+        System.out.println(UUID.randomUUID().toString().replaceAll("-",""));
+    }
 }

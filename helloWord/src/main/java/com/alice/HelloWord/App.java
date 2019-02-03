@@ -1,9 +1,5 @@
 package com.alice.HelloWord;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
     private String str;
@@ -21,13 +17,10 @@ public class App {
         System.out.println("HelloWorld");
     }
 
-    public static void main(String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public static void main(String[] args){
+        System.out.println("Hello World!");
         getHelloWorld();
-
         App app = new App();
         System.out.println(app.getStr());
-
     }
 }
