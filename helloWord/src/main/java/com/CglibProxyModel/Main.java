@@ -1,7 +1,6 @@
 package com.CglibProxyModel;
 
 import com.CglibProxyModel.service.CglibProxy;
-import com.ProxyMode.service.IUserDao;
 import com.ProxyMode.service.impl.UserDaoImpl;
 
 /**
