@@ -22,5 +22,14 @@ public class App {
         getHelloWorld();
         App app = new App();
         System.out.println(app.getStr());
+
+        app = null;
+        System.gc();
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("回收内存就执行");
+
     }
 }
