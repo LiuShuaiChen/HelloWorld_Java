@@ -25,8 +25,12 @@ public class App {
 
         app = null;
         System.gc();
+
+        //Exception in thread "main" java.lang.StackOverflowError
+        StudentA studentA = new StudentA();
     }
 
+    //当前类被GC回收就会执行
     @Override
     protected void finalize() throws Throwable {
         System.out.println("回收内存就执行");
