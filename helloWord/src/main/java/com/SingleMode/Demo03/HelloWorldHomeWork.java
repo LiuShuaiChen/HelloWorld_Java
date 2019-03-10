@@ -1,4 +1,4 @@
-package com.DesignMode.Demo03;
+package com.SingleMode.Demo03;
 
 /**
  * 利用封装机制写一个orm框架

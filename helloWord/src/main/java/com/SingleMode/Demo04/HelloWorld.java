@@ -1,4 +1,4 @@
-package com.DesignMode.Demo04;
+package com.SingleMode.Demo04;
 
 /**
  * 设计模式 结合业务需求 或者自己搭建框架

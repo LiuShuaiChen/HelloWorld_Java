@@ -1,4 +1,4 @@
-package com.DesignMode.Demo03.entity;
+package com.SingleMode.Demo03.entity;
 
 /**
  * 创建student实体类

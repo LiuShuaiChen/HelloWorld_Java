@@ -1,9 +1,7 @@
-package com.DesignMode.Demo01;
+package com.SingleMode.Demo01;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * 设计模式
@@ -63,7 +61,7 @@ public class HelloWorld {
 
 //            HelloWorld helloWorld = (HelloWorld) Class.forName("com.DesignMode.Demo01.HelloWorld");
 
-            Class<?> classUser =Class.forName("com.DesignMode.Demo01.HelloWorld");
+            Class<?> classUser =Class.forName("com.SingleMode.Demo01.HelloWorld");
             Object o = classUser.newInstance();
 
             //获取当前所有的属性 字段

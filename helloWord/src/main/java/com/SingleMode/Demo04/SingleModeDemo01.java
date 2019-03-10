@@ -1,7 +1,5 @@
-package com.DesignMode.Demo04;
+package com.SingleMode.Demo04;
 
-
-import sun.security.jca.GetInstance;
 
 /**
  * 饿汉式单例模式

@@ -1,6 +1,4 @@
-package com.DesignMode.Demo02;
-
-import com.sun.org.apache.xpath.internal.SourceTree;
+package com.SingleMode.Demo02;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -35,7 +33,7 @@ public class HelloWorld {
 
         // 使用Java反射创建对象
         try {
-            Class<?> aClass = Class.forName("com.DesignMode.Demo02.UserEntity");
+            Class<?> aClass = Class.forName("com.SingleMode.Demo02.UserEntity");
             //使用反射机制创建对象
             UserEntity userEntity1 = (UserEntity) aClass.newInstance();
             userEntity1.setName("aaaaaaaaaaaa  反射对象");

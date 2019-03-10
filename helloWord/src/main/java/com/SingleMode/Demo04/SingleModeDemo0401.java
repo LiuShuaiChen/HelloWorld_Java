@@ -1,4 +1,4 @@
-package com.DesignMode.Demo04;
+package com.SingleMode.Demo04;
 
 /**
  * 枚举方式

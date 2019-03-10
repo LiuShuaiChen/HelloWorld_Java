@@ -1,6 +1,4 @@
-package com.DesignMode.Demo04;
-
-import com.sun.org.apache.bcel.internal.classfile.Code;
+package com.SingleMode.Demo04;
 
 /**
  * 枚举方式

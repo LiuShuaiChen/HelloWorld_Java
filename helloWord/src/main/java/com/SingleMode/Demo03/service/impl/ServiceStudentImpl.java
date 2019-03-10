@@ -1,7 +1,7 @@
-package com.DesignMode.Demo03.service.impl;
+package com.SingleMode.Demo03.service.impl;
 
-import com.DesignMode.Demo03.entity.Student;
-import com.DesignMode.Demo03.service.ServiceStudent;
+import com.SingleMode.Demo03.entity.Student;
+import com.SingleMode.Demo03.service.ServiceStudent;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.DesignMode.Demo02;
+package com.SingleMode.Demo02;
 
 public class UserEntity {
 
