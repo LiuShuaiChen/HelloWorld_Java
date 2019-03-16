@@ -1,4 +1,4 @@
-package com.alice.HelloWord;
+package com.alice.jmm;
 
 /**
  * 配置堆内存大小
