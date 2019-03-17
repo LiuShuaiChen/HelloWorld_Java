@@ -8,6 +8,13 @@ import java.util.ArrayList;
  * 内存溢出问题
  * -Xms5m -Xmx10m -Xmn5m -XX:SurvivorRatio=2 -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError
  * 垃圾回收的基本原则:内存不足的时候就会去回收垃圾,内容富裕则不会触发回收垃圾
+ *
+ *
+ * -Xms	初始堆大小。如：-Xms256m
+ * -Xss	JDK1.5+ 每个线程堆栈大小为1M，一般来说如果栈不是很深的话， 1M 是绝对够用了的。
+ * -XX:NewRatio	新生代与老年代的比例，如–XX:NewRatio=2，则新生代占整个堆空间的1/3，老年代占2/3
+ *
+ *
  */
 public class heapMemory01 {
 
