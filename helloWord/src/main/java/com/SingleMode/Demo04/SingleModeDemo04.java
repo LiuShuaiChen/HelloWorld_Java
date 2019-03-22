@@ -11,6 +11,8 @@ package com.SingleMode.Demo04;
 
 enum userEnum {
     HTTP_200(200, "请求成功"), HTTP_500(500, "请求失败");
+
+
     private Integer code;
     private String name;
 
