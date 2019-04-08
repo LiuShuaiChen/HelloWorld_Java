@@ -1,4 +1,4 @@
-package com.alice.hello;
+package com.alice.bean;
 
 import java.io.Serializable;
 
