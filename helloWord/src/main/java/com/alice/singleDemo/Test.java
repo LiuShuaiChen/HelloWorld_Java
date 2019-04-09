@@ -22,7 +22,7 @@ public class Test {
 
 //        System.out.println(singleDemo031 == singleDemo032);
 
-
+        System.out.println(2<<31);
 
 
     }
